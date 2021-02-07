@@ -12,5 +12,6 @@ namespace curlpp {
         using noprogress = option<CURLoption::CURLOPT_NOPROGRESS, bool>;
         using wfunc = option<CURLoption::CURLOPT_WRITEFUNCTION, wfunc_t>;
         using wfunc_userdata = option<CURLoption::CURLOPT_WRITEDATA, void*>;
+        using charset = option<CURLoption::CURLOPT_ENCODING, const char*>;
     }
 }
