@@ -8,7 +8,13 @@ option(APP_USE_TIDY "Use libtidy for parsing HTML" ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(mini_readability ${CMAKE_SOURCE_DIR}/src/main.cpp)
+add_executable(mini_readability
+    ${CMAKE_SOURCE_DIR}/src/main.cpp
+    ${CMAKE_SOURCE_DIR}/src/app.cpp
+    ${CMAKE_SOURCE_DIR}/src/loader.cpp
+    ${CMAKE_SOURCE_DIR}/src/parser.cpp
+    ${CMAKE_SOURCE_DIR}/src/rule.cpp
+)
 
 if(${APP_USE_CURL})
     add_subdirectory(curl)
@@ -26,5 +32,5 @@ if(${APP_USE_TIDY})
         target_link_libraries(mini_readability PRIVATE tidy-static)
     endif()
     target_compile_definitions(mini_readability PRIVATE APP_USE_TIDY)
-    # target_sources(mini_readability PRIVATE ${CMAKE_SOURCE_DIR}/src/tidy_parser.cpp)
+    target_sources(mini_readability PRIVATE ${CMAKE_SOURCE_DIR}/src/tidy_parser.cpp)
 endif()
